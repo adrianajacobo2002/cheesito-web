@@ -11,18 +11,17 @@
 }
 
 #root {
-  max-width: 1280px;
+  width: 100%; /* Elimina max-width y expande al 100% */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  text-align: initial; /* Cambia la alineación */
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--grisfondo);
+  background-color: white; /* Cambia el color de fondo temporalmente si es necesario */
   color: black;
-
 }
+
 
 .logo {
   height: 6em;
