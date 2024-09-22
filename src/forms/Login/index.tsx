@@ -44,7 +44,10 @@ const Login = () => {
             variant="contained" 
             color="warning"  // Botón naranja
             fullWidth 
-            sx={{ padding: '10px', backgroundColor: '#fe7f2d', ':hover': { backgroundColor: '#fe7f2d' }, fontFamily: 'Poppins, sans-serif' }}  
+            sx={{ padding: '10px', 
+              backgroundColor: '#fe7f2d', 
+              ':hover': { backgroundColor: '#fe7f2d' }, 
+              fontFamily: 'Poppins, sans-serif' }}  
           >
             Iniciar Sesión
           </Button>

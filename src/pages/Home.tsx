@@ -1,58 +1,56 @@
-import React from 'react';
-import { Container, Button, Typography, Box } from '@mui/material';
-import './Home.css';
-import PizzaImage from '../assets/img/Pizza.png'; // Ajustar la imagen importada
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import PizzaImage from '../assets/img/Pizza.png';
+import '../pages/Home.css';
 
-const Home = () => {
+export default function BasicGrid() {
   return (
-    <Container maxWidth="lg">
-      <Box 
-        display="flex" 
-        justifyContent="space-between" 
-        alignItems="center" 
-        height="100vh"
-        sx={{
-          flexDirection: { xs: 'column', md: 'row' }, // Responsivo
-          textAlign: { xs: 'center', md: 'left' }, // Centrar en pantallas pequeñas
-        }}
-      >
-        {/* Texto del lado izquierdo */}
-        <Box>
-          <Typography variant="h1" color="primary" className="brand-name">
-            Cheesito
-          </Typography>
-          <Typography variant="h6" color="textSecondary">
-            Donde el queso nunca falta
-          </Typography>
-          <Button 
-            variant="contained" 
-            color="warning" 
-            sx={{ mt: 2, textTransform: 'none', borderRadius: '20px' }} 
-            href="#menu"
-          >
-            Empezar →
-          </Button>
-        </Box>
-
-        {/* Imagen de la pizza del lado derecho */}
-        <Box 
-          sx={{ 
-            position: 'relative', 
-            width: { xs: '100%', md: '50%' }, // Responsivo 
-            display: 'flex', 
-            justifyContent: 'center'
-          }}
-        >
-          <img 
-            src={PizzaImage} 
-            alt="Pizza" 
-            className="pizza-image" 
-            style={{ width: '80%', maxWidth: '400px', height: 'auto' }} 
-          />
-        </Box>
-      </Box>
-    </Container>
+    <Box sx={{ flexGrow: 1, overflow: 'hidden', position: 'relative' }}>
+      <Grid container spacing={0} alignItems="center">
+        <Grid item xs={4}>
+          <div style={{ padding: '10%', paddingLeft: '50%', position: 'relative', zIndex: 2 }}>
+            <h1 style={{ color: '#FF6F00', fontSize: '7rem' }}>Cheesito</h1>
+            <p style={{
+              fontWeight: 'bold', 
+              fontSize: '1.1rem',
+              whiteSpace: 'nowrap',  // Evita el salto de línea
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'  // Si el texto es muy largo, muestra "..." al final
+            }}>
+              Donde el queso nunca falta
+            </p>
+            <Button variant="contained" style={{
+              backgroundColor: '#FF6F00',
+              border: 'none',
+              color: 'white',
+              padding: '15px 30px',
+              borderRadius: '15px',
+              cursor: 'pointer',
+              fontSize: 'Large',
+              zIndex: 3,
+              position: 'relative',
+              textTransform: 'none', // Asegura que el texto del botón esté en minúsculas
+              fontWeight: 'bold'
+            }}>
+              Empezar →
+            </Button>
+          </div>
+        </Grid>
+        <Grid item lg={8}>
+          <img src={PizzaImage} alt="Pizza" style={{
+            width: '147%',  // Incrementa el tamaño de la imagen
+            marginLeft: '-550px',
+            marginBottom: '-50px',
+            marginTop: '-50px',
+            display: 'block',
+            borderRadius: '8px',
+            zIndex: 1, // Mantiene la imagen detrás del contenido del texto y el botón
+            position: 'relative'
+          }} />
+        </Grid>
+      </Grid>
+    </Box>
   );
-};
-
-export default Home;
+}

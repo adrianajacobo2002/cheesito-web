@@ -5,8 +5,8 @@
   }
   
   .pizza-image {
-    width: 80%; /* Ocupará el 80% del contenedor */
-    max-width: 400px; /* Limitar el tamaño máximo */
+    width: 90%; /* Ocupará el 80% del contenedor */
+    max-width: 200px; /* Limitar el tamaño máximo */
     height: auto;
   }
   
@@ -21,3 +21,4 @@
     right: 10%; /* Ajustar posición */
   }
   
+
