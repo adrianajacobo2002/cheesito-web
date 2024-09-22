@@ -45,7 +45,8 @@ const Login = () => {
       <Paper 
         elevation={3} 
         sx={{ 
-          padding: '40px',  // Más padding para un aspecto espacioso
+          paddingY: '40px',
+          paddingX: '70px',  // Más padding para un aspecto espacioso
           borderRadius: '15px',  // Bordes redondeados más pronunciados
           width: '100%', 
           maxWidth: '450px',  // Tamaño máximo más ancho
@@ -58,8 +59,8 @@ const Login = () => {
             gutterBottom
             sx={{ 
               fontWeight: 'bold', 
-              color: '#ff8c42', 
-              fontFamily: 'Poppins, sans-serif',
+              color: '#fe7f2d', 
+              fontFamily: 'QuickSand, sans-serif',
               fontSize: '2.5rem',  // Ajuste del tamaño del texto
               marginBottom: '20px'  // Espacio debajo del título
             }}
@@ -79,6 +80,7 @@ const Login = () => {
             variant="outlined"
             fullWidth
             margin="normal"
+            color="warning"
             value={user}
             onChange={(e) => setUser(e.target.value)}
             sx={{ marginBottom: 3, fontFamily: 'Poppins, sans-serif', backgroundColor: '#fff' }}  
@@ -90,6 +92,7 @@ const Login = () => {
             fullWidth
             type="password"
             margin="normal"
+            color = "warning"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             sx={{ marginBottom: 4, fontFamily: 'Poppins, sans-serif', backgroundColor: '#fff' }}  
@@ -104,9 +107,9 @@ const Login = () => {
               backgroundColor: '#fe7f2d', 
               ':hover': { backgroundColor: '#fe7f2d' }, 
               fontFamily: 'Poppins, sans-serif',
-              borderRadius: '30px',  // Botón con bordes más redondeados
+              borderRadius: '15px',  // Botón con bordes más redondeados
               fontSize: '1rem',  // Tamaño de fuente ajustado
-              fontWeight: 'bold'
+              textTransform: 'none'
             }}  
           >
             Iniciar Sesión
