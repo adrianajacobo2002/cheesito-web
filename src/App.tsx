@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import MeseroDashboard from "./pages/Mesero/Dashboard";
+import CocineroDashboard from "./pages/Cocinero/Dashboard";
+import Home from "./pages/Home";
+import Login from "./forms/Login";
+import NoAccess from "./pages/NoAccess/index";
+import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        {/* Página Home */}
+        <Route path="/" element={<Home />} />
 
-export default App
+        {/* Ruta de inicio de sesión */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Ruta protegida por rol: solo para admins */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Ruta protegida por rol: solo para meseros */}
+        <Route
+          path="/mesero/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["MESERO"]}>
+              <MeseroDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Ruta protegida por rol: solo para cocineros */}
+        <Route
+          path="/cocinero/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["COCINERO"]}>
+              <CocineroDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Página de acceso denegado */}
+        <Route
+          path="/no-access"
+          element={<NoAccess />}
+        />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;

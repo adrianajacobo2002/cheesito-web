@@ -1,0 +1,24 @@
+.brand-name {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ff6600;
+  }
+  
+  .pizza-image {
+    width: 90%; /* Ocupará el 80% del contenedor */
+    max-width: 200px; /* Limitar el tamaño máximo */
+    height: auto;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    font-size: 1.2rem;
+    background-color: orange;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    transform: rotate(-10deg);
+    top: 10%; /* Ajustar posición */
+    right: 10%; /* Ajustar posición */
+  }
+  
+
