@@ -35,7 +35,7 @@ const NoAccess: React.FC = () => {
         justifyContent: 'space-between',
         alignItems: 'center', 
         height: '100vh', 
-        padding: '0 2rem', 
+        padding: '0 7rem', 
         backgroundColor: '#ffffff'
       }}
     >
