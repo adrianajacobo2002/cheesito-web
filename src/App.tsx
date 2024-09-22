@@ -8,6 +8,7 @@ import MeseroDashboard from "./pages/Mesero/Dashboard";
 import CocineroDashboard from "./pages/Cocinero/Dashboard";
 import Home from "./pages/Home";
 import Login from "./forms/Login";
+import NoAccess from "./pages/NoAccess/index";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -54,7 +55,7 @@ const App = () => {
         {/* Página de acceso denegado */}
         <Route
           path="/no-access"
-          element={<h1>Acceso Denegado - No tienes los permisos necesarios</h1>}
+          element={<NoAccess />}
         />
       </Routes>
     </Router>
