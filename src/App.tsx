@@ -1,17 +1,53 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
-import Home from './pages/Home'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import AdminDashboard from './pages/Admin/Dashboard';
+import MeseroDashboard from './pages/Mesero/Dashboard';
+import CocineroDashboard from './pages/Cocinero/Dashboard';
+import Login from './forms/Login';
+import './App.css';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
-function App() {
-  //const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div className="App">
-      <Home />
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        {/* Ruta de inicio de sesión */}
+        <Route path="/" element={<Login />} />
 
-export default App
+        {/* Ruta protegida por rol: solo para admins */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={['ADMIN']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Ruta protegida por rol: solo para meseros */}
+        <Route
+          path="/mesero/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={['MESERO']}>
+              <MeseroDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Ruta protegida por rol: solo para cocineros */}
+        <Route
+          path="/cocinero/dashboard"
+          element={
+            <ProtectedRoute allowedRoles={['COCINERO']}>
+              <CocineroDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Página de acceso denegado */}
+        <Route path="/no-access" element={<h1>Acceso Denegado - No tienes los permisos necesarios</h1>} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
