@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Button, Typography, Box } from '@mui/material';
 import './Home.css';
 import PizzaImage from '../assets/img/Pizza.png'; // Ajustar la imagen importada
