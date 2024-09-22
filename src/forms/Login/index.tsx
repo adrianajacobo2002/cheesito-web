@@ -1,16 +1,55 @@
 import { TextField, Button, Typography, Paper } from '@mui/material';
 import React from 'react';
 import '../../App.css'; // Ruta de app.css 
+
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Para redirigir después del login
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
+
+
 const Login = () => {
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Hook para redirigir
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/login', { user, password });
+      const { token } = response.data;  // Obtener el token del backend en la respuesta
+  
+      // Guardar el token en localStorage
+      localStorage.setItem('token', token);
+  
+      // Decodificar el token para obtener el rol
+      const decodedToken: any = jwtDecode(token);
+  
+      // Redirigir al dashboard basado en el rol del usuario decodificado
+      if (decodedToken.role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else if (decodedToken.role === 'MESERO') {
+        navigate('/mesero/dashboard');
+      } else if (decodedToken.role === 'COCINERO') {
+        navigate('/cocinero/dashboard');
+      }
+    } catch (error) {
+      setErrorMessage('Usuario o contraseña incorrectos');
+      console.error('Error en el login:', error);
+    }
+  };
+
   return (
     <div style={styles.container}>
       <Paper 
         elevation={3} 
         sx={{ 
-          padding: 10, 
-          borderRadius: 7, 
+          padding: '40px',  // Más padding para un aspecto espacioso
+          borderRadius: '15px',  // Bordes redondeados más pronunciados
           width: '100%', 
-          maxWidth: '600px'  // Limita el ancho del formulario
+          maxWidth: '450px',  // Tamaño máximo más ancho
+          textAlign: 'center'  // Centrar el contenido del texto
         }}
       >
         <div style={styles.formContent}>
@@ -20,34 +59,55 @@ const Login = () => {
             sx={{ 
               fontWeight: 'bold', 
               color: '#ff8c42', 
-              fontFamily: 'Poppins, sans-serif'  
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: '2.5rem',  // Ajuste del tamaño del texto
+              marginBottom: '20px'  // Espacio debajo del título
             }}
           >
             Bienvenido
           </Typography>
+
+          {errorMessage && (
+            <Typography color="error" sx={{ marginBottom: '20px' }}>
+              {errorMessage}
+            </Typography>
+          )}
+
           <TextField
+            id='user'
             label="Usuario"
             variant="outlined"
             fullWidth
             margin="normal"
-            sx={{ marginBottom: 3, fontFamily: 'Poppins, sans-serif' }}  
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            sx={{ marginBottom: 3, fontFamily: 'Poppins, sans-serif', backgroundColor: '#fff' }}  
           />
           <TextField
+            id='password'
             label="Contraseña"
             variant="outlined"
             fullWidth
             type="password"
             margin="normal"
-            sx={{ marginBottom: 4, fontFamily: 'Poppins, sans-serif' }}  
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            sx={{ marginBottom: 4, fontFamily: 'Poppins, sans-serif', backgroundColor: '#fff' }}  
           />
           <Button 
             variant="contained" 
             color="warning"  // Botón naranja
             fullWidth 
-            sx={{ padding: '10px', 
+            onClick={handleLogin}
+            sx={{ 
+              padding: '12px', 
               backgroundColor: '#fe7f2d', 
               ':hover': { backgroundColor: '#fe7f2d' }, 
-              fontFamily: 'Poppins, sans-serif' }}  
+              fontFamily: 'Poppins, sans-serif',
+              borderRadius: '30px',  // Botón con bordes más redondeados
+              fontSize: '1rem',  // Tamaño de fuente ajustado
+              fontWeight: 'bold'
+            }}  
           >
             Iniciar Sesión
           </Button>
@@ -63,14 +123,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh',  
-    width: '100vw',  // Asegura que ocupa todo el ancho del viewport
+    height: '100vh',  // Ocupar todo el alto de la ventana
+    width: '100vw',  // Ocupar todo el ancho de la ventana
     backgroundColor: '#bfbfbf',  // Fondo gris completo
-    marginTop: -40,
-    marginBottom: -40,
-    marginLeft: -352,
-    marginRight: 20,
     padding: 0,
+    margin: 0,  // Eliminar márgenes
   },
   formContent: {
     display: 'flex',

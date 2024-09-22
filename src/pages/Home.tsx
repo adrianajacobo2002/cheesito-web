@@ -1,11 +1,8 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import PizzaImage from '../assets/img/Pizza.png';
-import '../pages/Home.css';
+import { Container, Button, Typography, Box, Grid } from '@mui/material';
+import './Home.css';
+import PizzaImage from '../assets/img/Pizza.png'; // Ajustar la imagen importada
 
-export default function BasicGrid() {
+const Home = () => {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', position: 'relative' }}>
       <Grid container spacing={0} alignItems="center">
