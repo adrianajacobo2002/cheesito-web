@@ -28,7 +28,7 @@ const Login = () => {
   
       // Redirigir al dashboard basado en el rol del usuario decodificado
       if (decodedToken.role === 'ADMIN') {
-        navigate('/admin/dashboard');
+        navigate('/admin');
       } else if (decodedToken.role === 'MESERO') {
         navigate('/mesero/dashboard');
       } else if (decodedToken.role === 'COCINERO') {

@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
   Route,
-  Routes
+  Routes,
+  Navigate
 } from "react-router-dom";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import MeseroDashboard from "./pages/Mesero/Dashboard";
@@ -11,6 +12,11 @@ import Login from "./forms/Login";
 import NoAccess from "./pages/NoAccess/index";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+import AdminHome from './pages/Admin/Home';
+import AdminMesas from './pages/Admin/Mesas';
+import AdminPlatillos from './pages/Admin/Platillos';
+import AdminOrdenes from './pages/Admin/Ordenes';
 
 const App = () => {
   return (
@@ -24,13 +30,22 @@ const App = () => {
 
         {/* Ruta protegida por rol: solo para admins */}
         <Route
-          path="/admin/dashboard"
+          path="/admin"
           element={
             <ProtectedRoute allowedRoles={["ADMIN"]}>
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          {/* Redireccionar por defecto desde /admin a /admin/home */}
+          <Route path="" element={<Navigate to="home" />} />
+          
+          <Route path="home" element={<AdminHome />} />
+          <Route path="mesas" element={<AdminMesas />} />
+          <Route path="platillos" element={<AdminPlatillos />} />
+          <Route path="ordenes" element={<AdminOrdenes />} />
+
+        </Route>
 
         {/* Ruta protegida por rol: solo para meseros */}
         <Route
