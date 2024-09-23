@@ -18,7 +18,6 @@ import AdminMesas from './pages/Admin/Mesas';
 import AdminPlatillos from './pages/Admin/Platillos';
 import AdminOrdenes from './pages/Admin/Ordenes';
 
-
 import MeseroHome from './pages/Mesero/Home';
 import MeseroOrdenes from './pages/Mesero/Ordenes';
 
