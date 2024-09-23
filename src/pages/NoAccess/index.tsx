@@ -18,11 +18,10 @@ const NoAccess: React.FC = () => {
       if (decodedToken.role === 'ADMIN') {
         navigate('/admin');
       } else if (decodedToken.role === 'MESERO') {
-        navigate('/mesero/dashboard');
+        navigate('/mesero');
       } else if (decodedToken.role === 'COCINERO') {
-        navigate('/cocinero/dashboard');
-      } else {
-      }
+        navigate('/cocinero');
+      } 
     } else {
       navigate('/');
     }

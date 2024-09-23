@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
 
-const AdminPlatillos: React.FC = () => {
+const AdminPlatillos = () => {
   return (
-    <Box>
-      <Typography variant="h4">Gestión de Platillos</Typography>
-    </Box>
+    <div>
+      <h1>Platillos</h1>
+      {/* Aquí va el contenido específico de Mesas */}
+    </div>
   );
 };
 

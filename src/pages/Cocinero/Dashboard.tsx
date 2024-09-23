@@ -1,41 +1,17 @@
 import React from 'react';
-import { Typography, Box, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'; // Importa Outlet para renderizar subcomponentes (Home, Mesas, etc.)
+import CocineroNavbar from '../../layouts/CocineroNavbar';
+import { Box } from '@mui/material';
 
-const CocineroDashboard: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/');
-  };
+const CocineroDashboard = () => {
   return (
-    <Box 
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        backgroundColor: '#f5f5f5'
-      }}
-    >
-      <Typography 
-        variant="h2" 
-        sx={{ fontWeight: 'bold', color: '#333', fontFamily: 'Poppins, sans-serif' }}
-      >
-        Bienvenido Cocinero
-      </Typography>
-
-      {/* Botón de Logout */}
-      <Button 
-        variant="contained" 
-        color="primary" 
-        sx={{ marginTop: '20px' }} 
-        onClick={handleLogout}
-      >
-        Cerrar Sesión
-      </Button>
+    <Box sx={{ display: 'flex' }}>
+      <CocineroNavbar />
+      {/* El contenido del Dashboard se renderiza al lado del Navbar */}
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {/* Outlet mostrará los componentes hijos como Home, Mesas, etc. */}
+        <Outlet />
+      </Box>
     </Box>
   );
 };
