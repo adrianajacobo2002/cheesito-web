@@ -16,7 +16,7 @@ const NoAccess: React.FC = () => {
       const decodedToken: any = jwtDecode(token);
 
       if (decodedToken.role === 'ADMIN') {
-        navigate('/admin/dashboard');
+        navigate('/admin');
       } else if (decodedToken.role === 'MESERO') {
         navigate('/mesero/dashboard');
       } else if (decodedToken.role === 'COCINERO') {

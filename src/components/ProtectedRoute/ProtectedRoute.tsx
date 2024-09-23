@@ -15,17 +15,24 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   }
 
   // Decodificar el token para obtener el rol del usuario
-  const decodedToken: any = jwtDecode(token);
-  const userRole = decodedToken.role;
+  try {
+    const decodedToken: any = jwtDecode(token);
+    const userRole = decodedToken.role;
 
-  // Verificar si el rol del usuario está en la lista de roles permitidos
-  if (!allowedRoles.includes(userRole)) {
-    // Si no tiene acceso, redirigir a la página de "Acceso Denegado"
-    return <Navigate to="/no-access" />;
+    console.log('User Role:', userRole); // <-- Aquí puedes verificar el rol decodificado
+
+    // Verificar si el rol del usuario está en la lista de roles permitidos
+    if (!allowedRoles.includes(userRole)) {
+      // Si no tiene acceso, redirigir a la página de "Acceso Denegado"
+      return <Navigate to="/no-access" />;
+    }
+
+    // Si tiene el rol adecuado, renderizar la ruta protegida
+    return children;
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return <Navigate to="/login" />;
   }
-
-  // Si tiene el rol adecuado, renderizar la ruta protegida
-  return children;
 };
 
 export default ProtectedRoute;
