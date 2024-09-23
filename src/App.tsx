@@ -18,6 +18,11 @@ import AdminMesas from './pages/Admin/Mesas';
 import AdminPlatillos from './pages/Admin/Platillos';
 import AdminOrdenes from './pages/Admin/Ordenes';
 
+import MeseroHome from './pages/Mesero/Home';
+import MeseroOrdenes from './pages/Mesero/Ordenes';
+
+import CocineroHome from './pages/Cocinero/Home';
+
 const App = () => {
   return (
     <Router>
@@ -49,23 +54,36 @@ const App = () => {
 
         {/* Ruta protegida por rol: solo para meseros */}
         <Route
-          path="/mesero/dashboard"
+          path="/mesero"
           element={
             <ProtectedRoute allowedRoles={["MESERO"]}>
               <MeseroDashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          {/* Redireccionar por defecto desde /admin a /admin/home */}
+          <Route path="" element={<Navigate to="home" />} />
+          
+          <Route path="home" element={< MeseroHome />} />
+          <Route path="ordenes" element={<MeseroOrdenes />} />
+
+        </Route>
 
         {/* Ruta protegida por rol: solo para cocineros */}
         <Route
-          path="/cocinero/dashboard"
+          path="/cocinero"
           element={
             <ProtectedRoute allowedRoles={["COCINERO"]}>
               <CocineroDashboard />
             </ProtectedRoute>
           }
-        />
+        >
+          {/* Redireccionar por defecto desde /admin a /admin/home */}
+          <Route path="" element={<Navigate to="home" />} />
+          
+          <Route path="home" element={< CocineroHome />} />
+
+        </Route>
 
         {/* Página de acceso denegado */}
         <Route
