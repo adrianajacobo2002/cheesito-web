@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
 
-const AdminOrdenes: React.FC = () => {
+const AdminOrdenes = () => {
   return (
-    <Box>
-      <Typography variant="h4">Gestión de Órdenes</Typography>
-    </Box>
+    <div>
+      <h1>Ordenes</h1>
+      {/* Aquí va el contenido específico de Mesas */}
+    </div>
   );
 };
 
 export default AdminOrdenes;
+

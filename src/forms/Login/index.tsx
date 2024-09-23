@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom'; // Para redirigir después del l
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-
+interface DecodedToken {
+  role: string;  // Aquí defines el tipo de la propiedad 'role'
+}
 
 const Login = () => {
   const [user, setUser] = useState('');
@@ -24,15 +26,15 @@ const Login = () => {
       localStorage.setItem('token', token);
   
       // Decodificar el token para obtener el rol
-      const decodedToken: any = jwtDecode(token);
+      const decodedToken: DecodedToken = jwtDecode<DecodedToken>(token);
   
       // Redirigir al dashboard basado en el rol del usuario decodificado
       if (decodedToken.role === 'ADMIN') {
         navigate('/admin');
       } else if (decodedToken.role === 'MESERO') {
-        navigate('/mesero/dashboard');
+        navigate('/mesero');
       } else if (decodedToken.role === 'COCINERO') {
-        navigate('/cocinero/dashboard');
+        navigate('/cocinero');
       }
     } catch (error) {
       setErrorMessage('Usuario o contraseña incorrectos');

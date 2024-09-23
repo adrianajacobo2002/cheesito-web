@@ -6,6 +6,11 @@ interface ProtectedRouteProps {
   allowedRoles: string[]; // Lista de roles permitidos
 }
 
+interface DecodedToken {
+  role: string;  // Asumiendo que el token solo contiene un rol
+}
+
+
 const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   const token = localStorage.getItem('token');
 
@@ -16,7 +21,7 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
 
   // Decodificar el token para obtener el rol del usuario
   try {
-    const decodedToken: any = jwtDecode(token);
+    const decodedToken: DecodedToken = jwtDecode(token);
     const userRole = decodedToken.role;
 
     console.log('User Role:', userRole); // <-- Aquí puedes verificar el rol decodificado
