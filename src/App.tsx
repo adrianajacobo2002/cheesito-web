@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
 
         {/* Ruta de inicio de sesión */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login/>} />
 
         {/* Ruta protegida por rol: solo para admins */}
         <Route
