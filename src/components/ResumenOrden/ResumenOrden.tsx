@@ -50,7 +50,8 @@ const ResumenOrden: React.FC<ResumenOrdenProps> = ({ detallesOrden, onDeleteDeta
         top: '20px',
         height: 'calc(100vh - 40px)',
         marginLeft: 'auto',
-        maxWidth: 600,
+        maxWidth: 480,
+        minWidth: 480,
         fontFamily: 'Poppins, sans-serif'
       }}
     >
