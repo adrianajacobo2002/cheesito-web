@@ -10,24 +10,32 @@ interface CardNoDisponibleProps {
 
 const CardNoDisponible: React.FC<CardNoDisponibleProps> = ({ pizzaName, pizzaImage, availability }) => {
   return (
-    <div>
-      <Card sx={{ display: 'flex', alignItems: 'center', padding: 2, backgroundColor: '#f5f5f5', borderRadius: 2, maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          image={pizzaImage}  // Imagen de la pizza recibida como prop
-          alt={pizzaName}
-          sx={{ width: 80, height: 80, borderRadius: '50%' }}  // Estilo redondeado para la imagen
-        />
-        <CardContent sx={{ marginLeft: 2 }}>
-          <Typography variant="h6" component="div">
-            {pizzaName}  {/* Nombre de la pizza */}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
-            {availability}  {/* Disponibilidad de la pizza */}
-          </Typography>
-        </CardContent>
-      </Card>
-    </div>
+    <Card
+      sx={{
+        width: '100%', // La card ocupa todo el ancho disponible
+        textAlign: 'center',
+        borderRadius: 2,
+        boxShadow: 3,
+      }}
+    >
+      <CardMedia
+        component="img"
+        alt={pizzaName}
+        image={pizzaImage}
+        sx={{
+          height: 140, // Ajustamos la altura de la imagen
+          objectFit: 'cover',
+        }}
+      />
+      <CardContent>
+        <Typography variant="h6" component="div" gutterBottom>
+          {pizzaName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+          {availability}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 
