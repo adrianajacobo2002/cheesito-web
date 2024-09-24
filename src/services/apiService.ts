@@ -115,3 +115,13 @@ export const deleteTable = async (id_mesa: number) => {
     throw error;
   }
 };
+
+export const getAllOrdenes = async () => {
+  try {
+    const response = await api.get('/ordenes'); // Ruta para obtener todas las órdenes
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching órdenes:', error);
+    throw error;
+  }
+};

@@ -130,6 +130,8 @@ const AdminHome: React.FC = () => {
         text: `Se ha actualizado el stock de ${selectedPlatillo.platillo.nombre}.`,
         icon: 'success',
         confirmButtonText: 'Aceptar',
+      }). then(() => {
+        window.location.reload();  // Recargar la página
       });
 
       handleCloseModal();

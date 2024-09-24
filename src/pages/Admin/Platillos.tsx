@@ -6,6 +6,7 @@ import AgregarPlatilloModal from '../../components/Modals/AgregarPlatilloModal';
 import { getPizzasDisponibles, getBebidasDisponibles, createPlatillo, updateCantidadStock } from '../../services/apiService';
 import Swal from 'sweetalert2';
 import { PlatilloDisponible } from '../../types/types';
+import { useNavigate } from 'react-router-dom';  // Importar useNavigate para la redirección
 
 const AdminPlatillos: React.FC = () => {
   const [pizzasDisponibles, setPizzasDisponibles] = useState<PlatilloDisponible[]>([]);
@@ -15,6 +16,7 @@ const AdminPlatillos: React.FC = () => {
   const [openAgregarModal, setOpenAgregarModal] = useState(false);
   const [cantidad, setCantidad] = useState('');
   const [tabValue, setTabValue] = useState(0);  // Maneja la selección de las tabs
+  const navigate = useNavigate();  // Inicializar useNavigate para la redirección
 
   // Obtener pizzas y bebidas disponibles al cargar el componente
   useEffect(() => {
@@ -97,7 +99,7 @@ const AdminPlatillos: React.FC = () => {
         text: `Se ha agregado ${nuevaCantidad} unidades al stock de ${selectedPlatillo.platillo.nombre}.`,
         icon: 'success',
         confirmButtonText: 'Aceptar',
-      });
+      })
 
       handleCloseModal();
     } catch (error) {
@@ -119,6 +121,15 @@ const AdminPlatillos: React.FC = () => {
       setPizzasDisponibles(pizzas);
 
       handleCloseAgregarModal();
+
+      Swal.fire({
+        title: 'Platillo Agregado',
+        text: 'El platillo ha sido agregado correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      }).then(() => {
+        navigate('/admin/home');  // Redirigir al home de admin
+      });
     } catch (error) {
       console.error('Error al agregar platillo:', error);
     }
