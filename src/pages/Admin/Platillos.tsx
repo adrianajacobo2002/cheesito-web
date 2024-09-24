@@ -140,15 +140,13 @@ const AdminPlatillos: React.FC = () => {
 
         {/* Botón "Ver más" alineado a la derecha */}
         <Grid item xs={3} container justifyContent="flex-end" sx={{ marginTop: "50px" }}>
-          {pizzasDisponibles.length > 5 && (
-            <Button
+        <Button
               variant="contained"
               sx={{ backgroundColor: "#fe7f2d", "&:hover": { backgroundColor: "#e56f1f" }, color: "#fff", fontWeight: "bold", fontFamily: "QuickSand, sans-serif", padding: "10px 20px" }}
               onClick={() => setOpenAgregarModal(true)}
             >
               Agregar Platillo
             </Button>
-          )}
         </Grid>
       </Grid>
 
