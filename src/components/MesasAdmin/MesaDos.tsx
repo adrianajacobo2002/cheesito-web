@@ -1,19 +1,21 @@
 import React from "react";
 import { Card, CardContent } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./MesaDos.css"; // Asegúrate de que el archivo CSS esté importado
 
 interface MesaDosProps {
   num_mesa: number;
   estado: "OCUPADO" | "DISPONIBLE";
   nombreCliente?: string;
+  onDelete: () => void; // Añadimos esta propiedad
 }
 
 const MesaDos: React.FC<MesaDosProps> = ({
   num_mesa,
   estado,
   nombreCliente,
+  onDelete, // Recibimos la función onDelete
 }) => {
   const handleClick = () => {
     console.log(`Mesa 2 está ${estado}`);
@@ -26,12 +28,12 @@ const MesaDos: React.FC<MesaDosProps> = ({
       style={{
         cursor: "pointer",
         display: "inline-block",
-        backgroundColor: "transparent", // Quita el fondo de la card
+        backgroundColor: "transparent",
         padding: "20px",
         margin: "10px",
         borderRadius: "20px",
         boxShadow: "none",
-        width: "250px", // Ancho ajustado para mesa de 2 personas
+        width: "250px",
       }}
     >
       <CardContent style={{ padding: 0 }}>
@@ -42,15 +44,12 @@ const MesaDos: React.FC<MesaDosProps> = ({
           </div>
 
           {/* La mesa */}
-          <div
-            className={`mesa-dos ${estado === "OCUPADO" ? "mesa-ocupada" : "mesa-disponible"}`}
-          >
+          <div className={`mesa-dos ${estado === "OCUPADO" ? "mesa-ocupada" : "mesa-disponible"}`}>
             <h3>
-              Mesa{" "}
-              <IconButton aria-label="delete">
+              Mesa {num_mesa}{" "}
+              <IconButton aria-label="delete" onClick={onDelete}>
                 <DeleteIcon />
-              </IconButton>{" "}
-              {(num_mesa = num_mesa)}
+              </IconButton>
             </h3>
             <p>{estado === "OCUPADO" ? nombreCliente : "Disponible"}</p>
           </div>

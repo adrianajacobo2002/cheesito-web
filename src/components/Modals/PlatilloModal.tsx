@@ -21,9 +21,18 @@ const PlatilloModal: React.FC<PlatilloModalProps> = ({
   handleGuardarCambios,
 }) => {
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>
-        {platillo?.platillo.nombre}
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      PaperProps={{
+        style: {
+          borderRadius: '20px', // Borde redondeado
+          padding: '20px', // Espacio interno
+          maxWidth: '400px', // Hacer la modal más pequeña
+        },
+      }}
+    >
+      <DialogTitle sx={{ padding: '0' }}>
         <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -38,34 +47,83 @@ const PlatilloModal: React.FC<PlatilloModalProps> = ({
             <img
               src={`http://localhost:3000/uploads/${platillo.platillo.image_url}`}
               alt={platillo.platillo.nombre}
-              style={{ width: '200px', height: '200px', objectFit: 'cover', marginBottom: '20px' }}
+              style={{
+                width: '180px',
+                height: '180px',
+                objectFit: 'cover',
+                borderRadius: '50%',
+                marginBottom: '20px',
+              }}
             />
-            <Typography variant="h5" sx={{ color: '#fe7f2d', fontWeight: 'bold' }}>
+            <Typography
+              variant="h5"
+              sx={{
+                color: '#fe7f2d',
+                fontWeight: 'bold',
+                fontFamily: 'Quicksand, sans-serif',
+                marginBottom: '10px',
+              }}
+            >
               {platillo.platillo.nombre}
             </Typography>
-            <Typography variant="body1">Disponibles: {platillo.cantidad_disponible}</Typography>
+            <Typography variant="body1" sx={{ fontFamily: 'Poppins, sans-serif' }}>
+              Disponibles: {platillo.cantidad_disponible}
+            </Typography>
 
             <TextField
               label="Cantidad a agregar"
               value={cantidad}
               onChange={handleCantidadChange}
               fullWidth
-              sx={{ marginY: 2 }}
+              sx={{
+                marginY: 2,
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '10px',
+                },
+              }}
             />
 
             <Button
               variant="contained"
               color="warning"
               onClick={handleGuardarCambios}
-              sx={{ marginRight: 2 }}
+              sx={{
+                backgroundColor: '#51bfcc',
+                color: '#fff',
+                fontWeight: 'bold',
+                fontFamily: 'Quicksand, sans-serif',
+                borderRadius: '10px',
+                marginRight: 2,
+                padding: '10px 20px',
+                '&:hover': {
+                  backgroundColor: '#2aa7b6',
+                },
+              }}
             >
               Guardar Cambios
             </Button>
-            <Button variant="contained" color="error">
+            <Button
+              variant="contained"
+              color="error"
+              sx={{
+                fontWeight: 'bold',
+                fontFamily: 'Quicksand, sans-serif',
+                borderRadius: '10px',
+                padding: '10px 20px',
+              }}
+            >
               Eliminar
             </Button>
 
-            <Typography variant="body2" sx={{ marginTop: 2, color: 'gray' }}>
+            <Typography
+              variant="body2"
+              sx={{
+                marginTop: 2,
+                color: 'gray',
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '12px',
+              }}
+            >
               Nota: Si el stock actual es mayor a cero no es posible eliminar
             </Typography>
           </Box>

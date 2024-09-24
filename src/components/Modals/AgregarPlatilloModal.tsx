@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem, Box, IconButton } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Button, TextField, MenuItem, Box, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Swal from 'sweetalert2';
+import PublishRoundedIcon from '@mui/icons-material/PublishRounded';
 
 interface AgregarPlatilloModalProps {
   open: boolean;
@@ -79,8 +80,17 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      PaperProps={{
+        style: {
+          borderRadius: '20px',
+          width: '500px', // Más ancho
+        },
+      }}
+    >
+      <DialogTitle sx={{ textAlign: 'center', fontFamily: 'Quicksand, sans-serif', fontWeight: 'bold', color: '#fe7f2d' }}>
         Agregar Platillo
         <IconButton
           aria-label="close"
@@ -91,7 +101,7 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
           <Box sx={{ marginBottom: 2 }}>
             {imageFile ? (
               <img
@@ -107,8 +117,22 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
               />
             )}
           </Box>
-          <Button variant="contained" component="label" sx={{ marginBottom: 2 }}>
+          <Button
+            variant="contained"
+            component="label"
+            sx={{
+              backgroundColor: '#51bfcc',
+              fontWeight: 'bold',
+              fontFamily: 'Quicksand, sans-serif',
+              padding: '10px 20px',
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#2aa7b6',
+              },
+            }}
+          >
             Subir Imagen
+            <PublishRoundedIcon />
             <input type="file" hidden accept="image/*" onChange={handleImageChange} />
           </Button>
 
@@ -118,7 +142,13 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
             value={formValues.nombre}
             onChange={handleInputChange}
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{
+              marginBottom: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '10px',
+              },
+              fontFamily: 'Poppins, sans-serif',
+            }}
           />
           <TextField
             label="Precio"
@@ -126,7 +156,13 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
             value={formValues.precio}
             onChange={handleInputChange}
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{
+              marginBottom: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '10px',
+              },
+              fontFamily: 'Poppins, sans-serif',
+            }}
           />
           <TextField
             select
@@ -135,13 +171,34 @@ const AgregarPlatilloModal: React.FC<AgregarPlatilloModalProps> = ({
             value={formValues.tipo}
             onChange={handleInputChange}
             fullWidth
-            sx={{ marginBottom: 2 }}
+            sx={{
+              marginBottom: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '10px',
+              },
+              fontFamily: 'Poppins, sans-serif',
+            }}
           >
             <MenuItem value="COMIDA">Comida</MenuItem>
             <MenuItem value="BEBIDA">Bebida</MenuItem>
           </TextField>
 
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            sx={{
+              width: '100%',
+              backgroundColor: '#fe7f2d',
+              color: '#fff',
+              fontWeight: 'bold',
+              fontFamily: 'Quicksand, sans-serif',
+              padding: '10px 20px',
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: '#e56f1f',
+              },
+            }}
+          >
             Agregar
           </Button>
         </Box>

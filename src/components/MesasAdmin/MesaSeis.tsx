@@ -1,14 +1,23 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material'; 
+import { Card, CardContent } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 import './MesaSeis.css'; // Asegúrate de que el archivo CSS esté importado
 
 interface MesaSeisProps {
   num_mesa: number;
   estado: 'OCUPADO' | 'DISPONIBLE';
   nombreCliente?: string;
+  onDelete: () => void; // Callback para eliminar la mesa
 }
 
-const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) => {
+const MesaSeis: React.FC<MesaSeisProps> = ({
+  num_mesa,
+  estado,
+  nombreCliente,
+  onDelete,
+}) => {
   const handleClick = () => {
     console.log(`Mesa 6 está ${estado}`);
   };
@@ -20,12 +29,12 @@ const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) 
       style={{
         cursor: 'pointer',
         display: 'inline-block',
-        backgroundColor: 'transparent', // Quita el fondo de la card
+        backgroundColor: 'transparent',
         padding: '20px',
         margin: '10px',
         borderRadius: '20px',
         boxShadow: 'none',
-        width: '400px', // Ancho ajustado para alargar la mesa
+        width: '400px', // Ancho ajustado para la mesa de 6 personas
       }}
     >
       <CardContent style={{ padding: 0 }}>
@@ -39,7 +48,12 @@ const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) 
 
           {/* La mesa */}
           <div className={`mesa-seis ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}>
-            <h3>Mesa {num_mesa= num_mesa}</h3>
+            <h3>
+              Mesa {num_mesa}
+              <IconButton aria-label="delete" onClick={onDelete}>
+                <DeleteIcon />
+              </IconButton>
+            </h3>
             <p>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
           </div>
 

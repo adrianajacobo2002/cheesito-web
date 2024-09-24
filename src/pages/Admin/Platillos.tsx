@@ -130,21 +130,58 @@ const AdminPlatillos: React.FC = () => {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
-        Stock Disponible
-      </Typography>
+    <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "20px", minHeight: "100vh" }}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item xs={9}>
+          <Typography variant="h2" sx={{ color: "#fe7f2d", marginBottom: "10px", fontWeight: "bold", textAlign: "left", fontFamily: "QuickSand, sans-serif" }}>
+            Stock Disponible
+          </Typography>
+        </Grid>
 
-      {/* Botón para abrir la modal de agregar platillo */}
-      <Button variant="contained" color="primary" onClick={() => setOpenAgregarModal(true)}>
-        Agregar a Stock
-      </Button>
+        {/* Botón "Ver más" alineado a la derecha */}
+        <Grid item xs={3} container justifyContent="flex-end" sx={{ marginTop: "50px" }}>
+          {pizzasDisponibles.length > 5 && (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#fe7f2d", "&:hover": { backgroundColor: "#e56f1f" }, color: "#fff", fontWeight: "bold", fontFamily: "QuickSand, sans-serif", padding: "10px 20px" }}
+              onClick={() => setOpenAgregarModal(true)}
+            >
+              Agregar Platillo
+            </Button>
+          )}
+        </Grid>
+      </Grid>
 
-      {/* Tabs para filtrar entre pizzas y bebidas */}
-      <Tabs value={tabValue} onChange={handleChangeTab} sx={{ marginTop: 2 }}>
-        <Tab label="Pizzas" />
-        <Tab label="Bebidas" />
-      </Tabs>
+      {/* Tabs configuradas con el nuevo estilo */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '20px' }}>
+        <Tabs
+          value={tabValue}
+          onChange={handleChangeTab}
+          centered={false}
+          TabIndicatorProps={{
+            style: { backgroundColor: '#fe7f2d' }, // Cambia el color del indicador a naranjita
+          }}
+        >
+          <Tab
+            label="Pizzas"
+            sx={{
+              color: tabValue === 0 ? '#fe7f2d' : '#000', // Cambia el color del texto cuando el Tab está activo
+              fontFamily: 'Poppins, sans-serif', // Aplica la fuente Poppins
+              fontWeight: 'bold',
+              '&.Mui-selected': { color: '#fe7f2d' }, // Asegura que el tab seleccionado tenga el color correcto
+            }}
+          />
+          <Tab
+            label="Bebidas"
+            sx={{
+              color: tabValue === 1 ? '#fe7f2d' : '#000', // Cambia el color del texto cuando el Tab está activo
+              fontFamily: 'Poppins, sans-serif', // Aplica la fuente Poppins
+              fontWeight: 'bold',
+              '&.Mui-selected': { color: '#fe7f2d' }, // Asegura que el tab seleccionado tenga el color correcto
+            }}
+          />
+        </Tabs>
+      </Box>
 
       {/* Mostrar las cards según la tab seleccionada */}
       <Grid container spacing={3} sx={{ marginTop: 2 }}>

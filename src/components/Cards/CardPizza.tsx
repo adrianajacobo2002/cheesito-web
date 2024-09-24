@@ -14,7 +14,8 @@ const CardPizza: React.FC<CardPizzaProps> = ({ nombre, imagen, disponibles, onCl
     <Card
       onClick={onClick}  // La card será clickeable y abrirá la modal cuando se haga clic
       sx={{
-        width: '100%', // La card ocupa todo el ancho disponible
+        width: '100%',
+        height: '250px', // La card ocupa todo el ancho disponible
         textAlign: 'center',
         borderRadius: 2,
         boxShadow: 3,
@@ -36,15 +37,15 @@ const CardPizza: React.FC<CardPizzaProps> = ({ nombre, imagen, disponibles, onCl
         }}
       />
       <CardContent>
-        <Typography variant="h6" component="div" gutterBottom>
+        <Typography variant="body1" component="div" gutterBottom sx={{ fontWeight: 'bold', color: '#fe7f2d', marginLeft: 1, fontFamily: 'Quicksand, sans-serif', }}>
           {nombre}
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 1, fontFamily: 'Quicksand, sans-serif'}}>
           <Typography variant="body2" color="text.secondary">
             Disponibles:
           </Typography>
           <Typography
-            variant="h6"
+            variant="body2"
             component="span"
             sx={{ fontWeight: 'bold', color: 'black', marginLeft: 1 }}
           >
