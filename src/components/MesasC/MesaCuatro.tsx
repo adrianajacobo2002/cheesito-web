@@ -6,26 +6,23 @@ interface MesaCuatroProps {
   num_mesa: number;
   estado: 'OCUPADO' | 'DISPONIBLE';
   nombreCliente?: string;
+  onClick: () => void; // Agregar el onClick aquí
 }
 
-const MesaCuatro: React.FC<MesaCuatroProps> = ({ num_mesa, estado, nombreCliente }) => {
-  const handleClick = () => {
-    console.log(`Mesa 4 está ${estado}`);
-  };
-
+const MesaCuatro: React.FC<MesaCuatroProps> = ({ num_mesa, estado, nombreCliente, onClick }) => {
   return (
     <Card
-      onClick={handleClick}
+      onClick={onClick}  // Usar el onClick aquí
       className={`mesa-card ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}
       style={{
         cursor: 'pointer',
         display: 'inline-block',
-        backgroundColor: 'transparent', // Quita el fondo de la card
+        backgroundColor: 'transparent',
         padding: '20px',
         margin: '10px',
         borderRadius: '20px',
         boxShadow: 'none',
-        width: '300px', // Ancho ajustado para mesa de 4 personas
+        width: '300px',
       }}
     >
       <CardContent style={{ padding: 0 }}>
@@ -35,14 +32,10 @@ const MesaCuatro: React.FC<MesaCuatroProps> = ({ num_mesa, estado, nombreCliente
             <div className="asiento-oval"></div>
             <div className="asiento-oval"></div>
           </div>
-
-          {/* La mesa */}
           <div className={`mesa-cuatro ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}>
-            <h3>Mesa {num_mesa= num_mesa}</h3>
-            <p>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
+            <h5 style={{ fontFamily: 'QuickSand, sans-serif', fontWeight: 'bold' }}>Mesa {num_mesa}</h5>
+            <p style={{ fontFamily: 'Poppins, sans-serif' }}>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
           </div>
-
-          {/* Asientos inferiores */}
           <div className="asientos-inferiores">
             <div className="asiento-oval"></div>
             <div className="asiento-oval"></div>

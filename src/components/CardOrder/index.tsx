@@ -69,19 +69,20 @@ const OrdenesComponent: React.FC<OrdenesComponentProps> = ({ ordenes, fetchOrden
     <>
       {ordenes.map((orden: Orden) => (
         <Card 
-          key={orden.id_orden} 
-          sx={{
-            width: '700px', // Ancho fijo de la card
-            marginBottom: '20px', 
-            padding: '20px', 
-            borderRadius: '15px', // Bordes redondeados
-            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Sombra suave
-            backgroundColor: '#fff', // Fondo blanco
-            minHeight: 'auto', // Card se adapta al contenido
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        key={orden.id_orden} 
+        sx={{
+          width: '100%', // Hacer que la tarjeta ocupe el 100% del espacio disponible en lugar de un ancho fijo
+          maxWidth: '700px', // Mantener un tamaño máximo para tarjetas grandes
+          marginBottom: '20px', 
+          padding: '20px', 
+          borderRadius: '15px', // Bordes redondeados
+          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Sombra suave
+          backgroundColor: '#fff', // Fondo blanco
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+      
           <CardContent sx={{ flexGrow: 1 }}>
             {/* Mostrar el ID de la orden a la izquierda y el número de mesa a la derecha */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>

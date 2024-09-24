@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, CardMedia, Box, Button, TextField } from "@mui/material";
 
-// Definimos las props que aceptará el componente
-interface CardPizzaMeseroprops {
-  name: string;
-  price: number;
+interface CardPizzaMeseroProps {
+  nombre: string;
+  precio: number | undefined;
   availableUnits: number;
   imageUrl: string;
+  onAddToOrder: (cantidad: number) => void;
 }
 
-const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availableUnits, imageUrl }) => {
-  const [quantity, setQuantity] = useState<number>(1);  // Estado tipado con número
+const CardPizzaMesero: React.FC<CardPizzaMeseroProps> = ({ nombre, precio, availableUnits, imageUrl, onAddToOrder }) => {
+  // Cambia el valor inicial de 1 a 0
+  const [quantity, setQuantity] = useState<number>(0);
 
   const handleIncrease = (): void => {
     setQuantity(quantity + 1);
   };
 
   const handleDecrease = (): void => {
-    if (quantity > 1) {
+    if (quantity > 0) {
       setQuantity(quantity - 1);
     }
   };
@@ -34,30 +35,34 @@ const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availabl
       }}
     >
       <CardContent>
-        <Typography variant="h6" component="div" gutterBottom>
-          {name}  {/* Nombre pizza props */}
+        <Typography variant="h6" component="div" gutterBottom 
+        sx={{
+        color:'#fe7f2d',
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: 'bold',
+      }}>
+          {nombre}
         </Typography>
         <CardMedia
           component="img"
-          alt={name}
+          alt={nombre}
           height="180"
-          image={imageUrl}  //imagen que se necesite usar 
+          image={imageUrl}
           sx={{ objectFit: "contain", marginTop: 2 }}
         />
-        <Typography variant="h6" component="div" color="#fe7f2d" gutterBottom>
-          ${price.toFixed(2)}  {/* Precio de la pizza desde props */}
+        <Typography variant="h6" component="div" color="#fe7f2d" fontWeight={"bold"} fontFamily={"Poppins, sans-serif"} gutterBottom>
+          {precio !== undefined ? `$${precio.toFixed(2)}` : 'Precio no disponible'}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           <Typography
             component="span"
             sx={{ fontWeight: "bold", color: "#fe7f2d", marginRight: 1 }}
           >
-            {availableUnits}  {/* Cantidad disponible desde props */}
+            {availableUnits}
           </Typography>
           unidades disponibles
         </Typography>
 
-        {/* Contenedor para los botones de cantidad y el campo del número */}
         <Box
           sx={{
             display: "flex",
@@ -72,6 +77,7 @@ const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availabl
             sx={{
               backgroundColor: "#fe7f2d", 
               color: "white",
+              fontWeight: "bold"
             }}
             onClick={handleDecrease}
           >
@@ -83,6 +89,7 @@ const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availabl
             sx={{
               width: 50,
               '& .MuiInputBase-input': { padding: '0.5rem' },
+              fontWeight: "bold"
             }}
             InputProps={{
               readOnly: true,
@@ -93,6 +100,8 @@ const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availabl
             sx={{
               backgroundColor: "#fe7f2d", 
               color: "white",
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: "bold"
             }}
             onClick={handleIncrease}
           >
@@ -100,11 +109,11 @@ const CardPizzaMesero: React.FC<CardPizzaMeseroprops> = ({ name, price, availabl
           </Button>
         </Box>
 
-        {/* Botón de Agregar */}
         <Button
           variant="contained"
           fullWidth
-          sx={{ marginTop: 2, backgroundColor: "#fe7f2d", fontWeight: "bold", color: "white" }}
+          sx={{ marginTop: 2, backgroundColor: "#fe7f2d", fontWeight: "bold", color: "white", fontFamily: "Poppins, sans-serif", textTransform: "none" }}
+          onClick={() => onAddToOrder(quantity)}
         >
           AGREGAR
         </Button>

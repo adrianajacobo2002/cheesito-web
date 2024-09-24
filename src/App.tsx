@@ -21,6 +21,7 @@ import AdminOrdenes from './pages/Admin/Ordenes';
 
 import MeseroHome from './pages/Mesero/Home';
 import MeseroOrdenes from './pages/Mesero/Ordenes';
+import MeseroOrdenar from './pages/Mesero/Ordenar'
 
 import CocineroHome from './pages/Cocinero/Home';
 
@@ -68,6 +69,7 @@ const App = () => {
           
           <Route path="home" element={< MeseroHome />} />
           <Route path="ordenes" element={<MeseroOrdenes />} />
+          <Route path="ordenar/:id_orden" element={<MeseroOrdenar />} />
 
         </Route>
 

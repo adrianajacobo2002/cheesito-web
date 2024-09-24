@@ -83,7 +83,7 @@ const CocineroHome: React.FC = () => {
       {/* Encabezado estático */}
       <Box sx={{ width: "100%", maxWidth: 1200, textAlign: "left", marginBottom: "40px", marginLeft: "40px" }}>
         <Typography
-          variant="h4"
+          variant="h2"
           sx={{ color: "#fe7f2d", marginBottom: "20px", fontWeight: "bold", textAlign: 'left', fontFamily: 'QuickSand, sans-serif' }}
         >
           Bienvenido Cocinero
@@ -91,32 +91,35 @@ const CocineroHome: React.FC = () => {
         <Typography sx={{ marginBottom: "20px", fontWeight: "light", color: "#666", textAlign: 'left', fontFamily: 'Poppins, sans-serif' }}>
           {fechaActual} {/* Aquí se muestra la fecha actual */}
         </Typography>
-        <Typography variant="h5" sx={{ color: "#fe7f2d", fontWeight: "bold", textAlign: 'left', fontFamily: 'QuickSand, sans-serif' }}>
+        <Typography variant="h4" sx={{ color: "#fe7f2d", fontWeight: "bold", textAlign: 'left', fontFamily: 'QuickSand, sans-serif' }}>
           Ordenes del día
         </Typography>
       </Box>
 
       {/* Contenedor de las tarjetas (cards) con grid de 2 columnas */}
       <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", // 2 columnas con ajuste automático
-          gridGap: "20px",
-          width: "100%",
-          maxWidth: 1400, // Ajusta el ancho máximo del contenedor
-          justifyContent: "flex-start", // Cambiar a flex-start para que las tarjetas estén más hacia la izquierda
-          marginLeft: "40px", // Agregar margen a la izquierda
-          marginTop: "20px"
-        }}
-      >
-        {ordenesFiltradas.length > 0 ? (
-          <OrdenesComponent ordenes={ordenesFiltradas} fetchOrdenes={fetchOrdenes} />
-        ) : (
-          <Typography variant="h6" sx={{ color: "#333", textAlign: "center", fontFamily: 'Poppins, sans-serif' }}>
-            No hay órdenes disponibles en este estado.
-          </Typography>
-        )}
-      </Box>
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)", // Siempre 2 columnas
+        gridGap: "20px", // Espacio entre las tarjetas
+        width: "100%",
+        maxWidth: 1400, // Ajusta el ancho máximo del contenedor
+        justifyContent: "flex-start", // Alinear a la izquierda
+        marginLeft: "40px", // Asegúrate de que no haya margen a la izquierda
+        marginRight: "auto", // Deja margen automático a la derecha para ajustar
+        marginTop: "20px",
+      }}
+    >
+      {ordenesFiltradas.length > 0 ? (
+        <OrdenesComponent ordenes={ordenesFiltradas} fetchOrdenes={fetchOrdenes} />
+      ) : (
+        <Typography variant="h6" sx={{ color: "#333", textAlign: "center", fontFamily: 'Poppins, sans-serif' }}>
+          No hay órdenes disponibles en este estado.
+        </Typography>
+      )}
+    </Box>
+
+
     </Box>
   );
 };

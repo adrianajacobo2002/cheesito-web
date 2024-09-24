@@ -6,16 +6,13 @@ interface MesaSeisProps {
   num_mesa: number;
   estado: 'OCUPADO' | 'DISPONIBLE';
   nombreCliente?: string;
+  onClick: () => void; // Agregar el onClick aquí
 }
 
-const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) => {
-  const handleClick = () => {
-    console.log(`Mesa 6 está ${estado}`);
-  };
-
+const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente, onClick }) => {
   return (
     <Card
-      onClick={handleClick}
+      onClick={onClick}  // Usar el onClick aquí
       className={`mesa-card ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}
       style={{
         cursor: 'pointer',
@@ -25,7 +22,7 @@ const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) 
         margin: '10px',
         borderRadius: '20px',
         boxShadow: 'none',
-        width: '400px', // Ancho ajustado para alargar la mesa
+        width: '400px', // Ancho ajustado para mesa de 6 personas
       }}
     >
       <CardContent style={{ padding: 0 }}>
@@ -39,8 +36,8 @@ const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) 
 
           {/* La mesa */}
           <div className={`mesa-seis ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}>
-            <h3>Mesa {num_mesa= num_mesa}</h3>
-            <p>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
+            <h5 style={{ fontFamily: 'QuickSand, sans-serif', fontWeight: 'bold' }}>Mesa {num_mesa}</h5>
+            <p style={{ fontFamily: 'Poppins, sans-serif' }}>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
           </div>
 
           {/* Asientos inferiores */}
@@ -54,5 +51,6 @@ const MesaSeis: React.FC<MesaSeisProps> = ({ num_mesa, estado, nombreCliente }) 
     </Card>
   );
 };
+
 
 export default MesaSeis;

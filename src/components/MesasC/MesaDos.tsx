@@ -6,16 +6,13 @@ interface MesaDosProps {
   num_mesa: number;
   estado: 'OCUPADO' | 'DISPONIBLE';
   nombreCliente?: string;
+  onClick: () => void; // Agregar el onClick aquí
 }
 
-const MesaDos: React.FC<MesaDosProps> = ({ num_mesa, estado, nombreCliente }) => {
-  const handleClick = () => {
-    console.log(`Mesa 2 está ${estado}`);
-  };
-
+const MesaDos: React.FC<MesaDosProps> = ({ num_mesa, estado, nombreCliente, onClick }) => {
   return (
     <Card
-      onClick={handleClick}
+      onClick={onClick}  // Usar el onClick aquí
       className={`mesa-card ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}
       style={{
         cursor: 'pointer',
@@ -37,8 +34,8 @@ const MesaDos: React.FC<MesaDosProps> = ({ num_mesa, estado, nombreCliente }) =>
 
           {/* La mesa */}
           <div className={`mesa-dos ${estado === 'OCUPADO' ? 'mesa-ocupada' : 'mesa-disponible'}`}>
-            <h3>Mesa {num_mesa= num_mesa}</h3>
-            <p>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
+            <h5 style={{ fontFamily: 'QuickSand, sans-serif', fontWeight: 'bold' }}>Mesa {num_mesa}</h5>
+            <p style={{ fontFamily: 'Poppins, sans-serif' }}>{estado === 'OCUPADO' ? nombreCliente : 'Disponible'}</p>
           </div>
 
           {/* Asientos inferiores */}
@@ -50,5 +47,6 @@ const MesaDos: React.FC<MesaDosProps> = ({ num_mesa, estado, nombreCliente }) =>
     </Card>
   );
 };
+
 
 export default MesaDos;

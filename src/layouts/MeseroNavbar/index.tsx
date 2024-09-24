@@ -1,8 +1,7 @@
-import React from 'react';
 import { Box, CssBaseline, List, ListItem, ListItemButton, ListItemIcon, Divider } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-import TableRestaurantIcon from '@mui/icons-material/TableRestaurant'; // Puedes cambiar este ícono si quieres
 import LogoutIcon from '@mui/icons-material/ExitToAppRounded';
+import RoomServiceIcon from '@mui/icons-material/RoomService';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
@@ -71,7 +70,7 @@ export default function MeseroNavbar() {
           <ListItem disablePadding sx={{ marginY: 2, justifyContent: 'center' }}>
             <ListItemButton component={NavLink} to="/mesero/ordenes" sx={{ justifyContent: 'center', display: 'flex' }}>
               <ListItemIcon sx={{ justifyContent: 'center' }}>
-                <TableRestaurantIcon style={iconStyle} />
+                <RoomServiceIcon style={iconStyle} />
               </ListItemIcon>
             </ListItemButton>
           </ListItem>
